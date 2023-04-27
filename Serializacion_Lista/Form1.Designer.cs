@@ -38,11 +38,13 @@
             label2 = new Label();
             label3 = new Label();
             btnRegistrar = new Button();
+            btnBorrar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             SuspendLayout();
             // 
             // btnSerializar
             // 
+            btnSerializar.Enabled = false;
             btnSerializar.Location = new Point(347, 106);
             btnSerializar.Name = "btnSerializar";
             btnSerializar.Size = new Size(75, 23);
@@ -53,6 +55,7 @@
             // 
             // btnDeserializar
             // 
+            btnDeserializar.Enabled = false;
             btnDeserializar.Location = new Point(347, 152);
             btnDeserializar.Name = "btnDeserializar";
             btnDeserializar.Size = new Size(75, 23);
@@ -63,6 +66,8 @@
             // 
             // dgvDatos
             // 
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dgvDatos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Dock = DockStyle.Bottom;
             dgvDatos.Location = new Point(0, 269);
@@ -71,6 +76,7 @@
             dgvDatos.RowTemplate.Height = 25;
             dgvDatos.Size = new Size(604, 150);
             dgvDatos.TabIndex = 2;
+            dgvDatos.CellDoubleClick += dgvDatos_CellDoubleClick;
             // 
             // txtNombre
             // 
@@ -130,11 +136,22 @@
             btnRegistrar.UseVisualStyleBackColor = true;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
+            // btnBorrar
+            // 
+            btnBorrar.Location = new Point(347, 202);
+            btnBorrar.Name = "btnBorrar";
+            btnBorrar.Size = new Size(75, 23);
+            btnBorrar.TabIndex = 10;
+            btnBorrar.Text = "Borrar Lista";
+            btnBorrar.UseVisualStyleBackColor = true;
+            btnBorrar.Click += btnBorrar_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(604, 419);
+            Controls.Add(btnBorrar);
             Controls.Add(btnRegistrar);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -165,5 +182,6 @@
         private Label label2;
         private Label label3;
         private Button btnRegistrar;
+        private Button btnBorrar;
     }
 }

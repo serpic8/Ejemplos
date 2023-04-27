@@ -16,9 +16,11 @@ namespace Serializacion_Lista
         string jsonString = string.Empty;
 
 
+
         public Form1()
         {
             InitializeComponent();
+            dgvDatos.CellDoubleClick += new DataGridViewCellEventHandler(dgvDatos_CellDoubleClick);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -28,6 +30,7 @@ namespace Serializacion_Lista
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 MessageBox.Show("Debe ingresar un nombre válido.");
@@ -56,6 +59,8 @@ namespace Serializacion_Lista
             txtNombre.Clear();
             txtEdad.Clear();
             txtCorreo.Clear();
+            btnSerializar.Enabled = true;
+            btnDeserializar.Enabled = true;
         }
 
         private bool IsValidEmail(string email)
@@ -69,6 +74,8 @@ namespace Serializacion_Lista
             {
                 return false;
             }
+
+
         }
 
         private void btnSerializar_Click(object sender, EventArgs e)
@@ -79,6 +86,8 @@ namespace Serializacion_Lista
 
             //Muestro datos en dgv
             dgvDatos.DataSource = listaPersona;*/
+
+
 
             // Leer datos existentes del archivo (si los hay)
 
@@ -137,6 +146,36 @@ namespace Serializacion_Lista
             else
             {
                 MessageBox.Show("El archivo no existe.");
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            // Borrar los datos de la lista
+            listaPersona.Clear();
+
+            // Borrar los datos del archivo
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+
+            // Limpiar el DataGridView
+            dgvDatos.DataSource = null;
+            dgvDatos.Rows.Clear();
+        }
+
+        private void dgvDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            // Obtener el índice de la fila seleccionada
+            int index = e.RowIndex;
+
+            // Borrar la fila seleccionada del DataGridView
+            if (index >= 0)
+            {
+                dgvDatos.Rows.RemoveAt(index);
             }
         }
     }
